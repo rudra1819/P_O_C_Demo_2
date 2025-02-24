@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      
+      .profile-container {
+        max-width: 600px;
+        margin: 0 auto; 
+        padding: 20px;
+        background-color: 
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      }
+
+      .profile-container h1 {
+        text-align: center;
+        color: 
+      }
+
+      .profile-container p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: 
+      }
+
+      .edit-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color:
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .edit-link:hover {
+        background-color: 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-container">
+      <h1>Your Profile</h1>
+
+      <p><strong>Name:</strong> <%= @user.name %></p>
+      <p><strong>Email:</strong> <%= @user.email %></p>
+      <p><strong>Bio:</strong> <%= @user.bio %></p>
+
+      <%= link_to 'Edit Profile', edit_profile_path, class: 'edit-link' %>
+    </div>
+  </body>
+</html>

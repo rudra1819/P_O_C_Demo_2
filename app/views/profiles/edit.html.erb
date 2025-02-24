@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .profile-container {
+        max-width: 600px;
+        margin: 0 auto; 
+        padding: 20px;
+        background-color:
+        border-radius: 8px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+      }
+
+      .profile-container h1 {
+        text-align: center;
+        color: 333;
+      }
+
+      .profile-container p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: 555;
+      }
+
+      .field {
+        margin-bottom: 15px;
+      }
+
+      .field label {
+        font-weight: bold;
+        display: block;
+      }
+
+      .field input, .field textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid ;
+        border-radius: 5px;
+      }
+
+      .actions {
+        text-align: center;
+      }
+
+      .actions input {
+        padding: 10px 20px;
+        background-color: 4CAF50; 
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .actions input:hover {
+        background-color: 45a049;
+      }
+
+      .error_messages {
+        background-color: f8d7da;
+        color: 721c24;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      .edit-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: 4CAF50; 
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .edit-link:hover {
+        background-color: 45a049; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-container">
+      <h1>Edit Your Profile</h1>
+
+      <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_for @user, url: profile_path do |f| %>
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email %>
+        </div>
+
+        <div class="field">
+          <%= f.label :bio %><br />
+          <%= f.text_area :bio %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update Profile" %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Cancel', profile_path, class: 'edit-link' %>
+    </div>
+  </body>
+</html>
